@@ -1,0 +1,26 @@
+[
+  {
+    "model":"Ridge",
+    "best_cv_score":-2.052386521,
+    "best_params":{
+      "model__alpha":8.4834289824
+    },
+    "mae":0.4523368779,
+    "mse":3.2550671961,
+    "rmse":1.8041804777,
+    "r2":0.7697169787
+  },
+  {
+    "model":"SVR",
+    "best_cv_score":-2.0504383972,
+    "best_params":{
+      "model__kernel":"linear",
+      "model__epsilon":0.2,
+      "model__C":0.1
+    },
+    "mae":0.4065552289,
+    "mse":3.2411469666,
+    "rmse":1.8003185737,
+    "r2":0.7707017794
+  }
+]

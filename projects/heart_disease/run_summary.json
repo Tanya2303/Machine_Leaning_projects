@@ -1,0 +1,92 @@
+{
+  "dataset": "heart_failure_clinical_records_dataset.csv",
+  "rows": 299,
+  "columns": 13,
+  "target": "DEATH_EVENT",
+  "task": "classification",
+  "target_distribution": {
+    "0": 203,
+    "1": 96
+  },
+  "null_counts": {
+    "age": 0,
+    "anaemia": 0,
+    "creatinine_phosphokinase": 0,
+    "diabetes": 0,
+    "ejection_fraction": 0,
+    "high_blood_pressure": 0,
+    "platelets": 0,
+    "serum_creatinine": 0,
+    "serum_sodium": 0,
+    "sex": 0,
+    "smoking": 0,
+    "time": 0,
+    "DEATH_EVENT": 0
+  },
+  "categorical_features": [],
+  "numeric_features": [
+    "age",
+    "anaemia",
+    "creatinine_phosphokinase",
+    "diabetes",
+    "ejection_fraction",
+    "high_blood_pressure",
+    "platelets",
+    "serum_creatinine",
+    "serum_sodium",
+    "sex",
+    "smoking",
+    "time"
+  ],
+  "raw_input_features": [
+    "age",
+    "anaemia",
+    "creatinine_phosphokinase",
+    "diabetes",
+    "ejection_fraction",
+    "high_blood_pressure",
+    "platelets",
+    "serum_creatinine",
+    "serum_sodium",
+    "sex",
+    "smoking",
+    "time"
+  ],
+  "engineered_features": [],
+  "test_size": 0.2,
+  "random_state": 42,
+  "final_model": "Gradient Boosting",
+  "selection_source": "tuned",
+  "selection_metric": "5-fold CV weighted F1",
+  "final_cv_score": 0.8598465767167586,
+  "final_cv_rmse": null,
+  "target_label_mapping": null,
+  "final_test_metrics": {
+    "accuracy": 0.8,
+    "precision_weighted": 0.7940740740740739,
+    "recall_weighted": 0.8,
+    "f1_weighted": 0.7928864569083448,
+    "confusion_matrix": [
+      [
+        37,
+        4
+      ],
+      [
+        8,
+        11
+      ]
+    ],
+    "roc_auc": 0.8331193838254172
+  },
+  "optional_boosters_available": [
+    "XGBoost",
+    "LightGBM",
+    "CatBoost"
+  ],
+  "optional_boosters_missing": [],
+  "selected_cv_score": 0.8598465767,
+  "cv_best_model": "Gradient Boosting",
+  "cv_best_score": 0.8598465767,
+  "one_standard_error_tolerance": 0.01877972807613267,
+  "selection_rule": "Among models within one standard error of the best CV score, prefer the simpler/deployment-friendlier model; prefer tuned settings for that estimator."
+}

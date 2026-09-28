@@ -1,0 +1,100 @@
+{
+  "dataset": "loan_approval_dataset.csv",
+  "rows": 4269,
+  "columns": 12,
+  "target": "loan_status",
+  "task": "classification",
+  "target_distribution": {
+    "0": 2656,
+    "1": 1613
+  },
+  "null_counts": {
+    "no_of_dependents": 0,
+    "education": 0,
+    "self_employed": 0,
+    "income_annum": 0,
+    "loan_amount": 0,
+    "loan_term": 0,
+    "cibil_score": 0,
+    "residential_assets_value": 0,
+    "commercial_assets_value": 0,
+    "luxury_assets_value": 0,
+    "bank_asset_value": 0,
+    "loan_status": 0
+  },
+  "categorical_features": [
+    "education",
+    "self_employed"
+  ],
+  "numeric_features": [
+    "no_of_dependents",
+    "income_annum",
+    "loan_amount",
+    "loan_term",
+    "cibil_score",
+    "residential_assets_value",
+    "commercial_assets_value",
+    "luxury_assets_value",
+    "bank_asset_value",
+    "total_assets",
+    "loan_to_income_ratio",
+    "loan_to_assets_ratio"
+  ],
+  "raw_input_features": [
+    "no_of_dependents",
+    "education",
+    "self_employed",
+    "income_annum",
+    "loan_amount",
+    "loan_term",
+    "cibil_score",
+    "residential_assets_value",
+    "commercial_assets_value",
+    "luxury_assets_value",
+    "bank_asset_value"
+  ],
+  "engineered_features": [
+    "total_assets",
+    "loan_to_income_ratio",
+    "loan_to_assets_ratio"
+  ],
+  "test_size": 0.2,
+  "random_state": 42,
+  "final_model": "Decision Tree",
+  "selection_source": "tuned",
+  "selection_metric": "5-fold CV weighted F1",
+  "final_cv_score": 0.9994147884372753,
+  "final_cv_rmse": null,
+  "target_label_mapping": {
+    "0": "Approved",
+    "1": "Rejected"
+  },
+  "final_test_metrics": {
+    "accuracy": 1.0,
+    "precision_weighted": 1.0,
+    "recall_weighted": 1.0,
+    "f1_weighted": 1.0,
+    "confusion_matrix": [
+      [
+        531,
+        0
+      ],
+      [
+        0,
+        323
+      ]
+    ],
+    "roc_auc": 1.0
+  },
+  "optional_boosters_available": [
+    "XGBoost",
+    "LightGBM",
+    "CatBoost"
+  ],
+  "optional_boosters_missing": [],
+  "selected_cv_score": 0.9994147884,
+  "cv_best_model": "Decision Tree",
+  "cv_best_score": 0.9994147884372752,
+  "one_standard_error_tolerance": 0.0005234291341885692,
+  "selection_rule": "Among models within one standard error of the best CV score, prefer the simpler/deployment-friendlier model; prefer tuned settings for that estimator."
+}
