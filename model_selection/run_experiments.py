@@ -16,7 +16,7 @@ from sklearn.ensemble import (AdaBoostClassifier, AdaBoostRegressor, ExtraTreesC
 from sklearn.impute import SimpleImputer
 from sklearn.linear_model import (ElasticNet, Lasso, LinearRegression, LogisticRegression, Ridge)
 from sklearn.metrics import (accuracy_score, precision_score, recall_score, f1_score,
-    roc_auc_score, confusion_matrix, mean_absolute_error, mean_squared_error, r2_score)
+    roc_auc_score, confusion_matrix, classification_report, mean_absolute_error, mean_squared_error, r2_score)
 from sklearn.model_selection import (RandomizedSearchCV, cross_validate, train_test_split)
 from sklearn.preprocessing import LabelEncoder
 from sklearn.inspection import permutation_importance
@@ -142,7 +142,7 @@ def score_holdout(pipe, X, y, task):
   labels=np.unique(y); positive=labels[-1]
   result={'accuracy':accuracy_score(y,pred),'precision_weighted':precision_score(y,pred,average='weighted',zero_division=0),
    'recall_weighted':recall_score(y,pred,average='weighted',zero_division=0),'f1_weighted':f1_score(y,pred,average='weighted',zero_division=0),
-   'confusion_matrix':confusion_matrix(y,pred).tolist()}
+   'confusion_matrix':confusion_matrix(y,pred).tolist(),'per_class_metrics':classification_report(y,pred,output_dict=True,zero_division=0)}
   if len(labels)==2:
    try: result['roc_auc']=roc_auc_score(y,pipe.predict_proba(X)[:,list(pipe.classes_).index(positive)])
    except Exception: pass
@@ -251,7 +251,27 @@ def run_one(key, cfg):
  print('FINAL',key,best[1],best[3],summary['final_test_metrics'],flush=True)
  return summary
 
+def write_comparison_summary(summaries):
+ lines=['# Experimental model comparison and selections','',
+  'Actual results on the supplied datasets. Each project uses one seeded 80/20 test split shared by every model, with five-fold CV on the training split. Classifiers use weighted F1; regressors use RMSE. The final choice applies a one-standard-error rule: among models close to the best CV score, prefer the simpler model, and use tuned settings when available for that estimator. Detailed rankings, test metrics, tuning settings, and confusion matrices are in each project folder.','',
+  '| Project | Selected model | Selected CV result | Held-out test result |','|---|---|---|---|']
+ for summary in summaries:
+  key=next(k for k,v in PROJECTS.items() if v['file']==summary['dataset'])
+  metrics=summary['final_test_metrics']; cv=summary.get('selected_cv_score',summary.get('final_cv_score'))
+  table=pd.read_csv(ROOT/'projects'/key/'model_comparison.csv'); row=table[table.model==summary['final_model']].iloc[0]
+  if summary['task']=='classification': cvtext=f"weighted F1 {cv:.4f} (baseline fold SD {row.cv_score_std:.4f})"; test=f"Accuracy {metrics['accuracy']:.3f}; F1 {metrics['f1_weighted']:.3f}; ROC-AUC {metrics.get('roc_auc',float('nan')):.3f}"
+  else: cvtext=f"RMSE {-cv:.3f} (baseline fold SD {row.cv_score_std:.3f})"; test=f"MAE {metrics['mae']:.3f}; RMSE {metrics['rmse']:.3f}; R² {metrics['r2']:.3f}"
+  lines.append(f"| {key} | {summary['final_model']} | {cvtext} | {test} |")
+ lines += ['', '## Dataset notes','',
+  '- Heart data predicts the supplied `DEATH_EVENT` follow-up outcome, not heart disease diagnosis. The small positive class makes metrics uncertain.',
+  '- The headerless `housing.csv` is Boston Housing. `MEDV` is in thousands of dollars; this historic dataset is educational only.',
+  '- Loan approval scores are exceptionally high on this split. The perfect holdout is dataset-specific and does not establish real lending performance.',
+  '- Student Performance uses Ridge because it is within one standard error of the best CV model while easier to explain and deploy.',
+  '- Permutation feature importance is produced after selection for interpretation only.']
+ (ROOT/'model_selection'/'model_comparison_summary.md').write_text('\n'.join(lines)+'\n')
+
 if __name__=='__main__':
  all_summaries=[]
  for key,cfg in PROJECTS.items(): all_summaries.append(run_one(key,cfg))
  (ROOT/'model_selection'/'all_results.json').write_text(json.dumps(all_summaries,indent=2))
+ write_comparison_summary(all_summaries)

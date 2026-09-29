@@ -62,7 +62,7 @@
   "final_model": "CatBoost",
   "selection_source": "tuned",
   "selection_metric": "5-fold CV RMSE (lower is better)",
-  "final_cv_score": -3.233970853234921,
+  "final_cv_score": -3.2339708532,
   "final_cv_rmse": 3.2339708532,
   "target_label_mapping": null,
   "final_test_metrics": {

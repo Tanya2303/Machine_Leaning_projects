@@ -44,7 +44,7 @@ def finalize(key,cfg):
  imp=permutation_importance(pipe,Xte,yte,n_repeats=8,random_state=SEED,n_jobs=1,scoring=scoring)
  pd.DataFrame({'feature':X.columns,'importance_mean':imp.importances_mean,'importance_std':imp.importances_std}).sort_values('importance_mean',ascending=False).to_csv(out/'feature_importance.csv',index=False)
  summary=json.loads((out/'run_summary.json').read_text())
- summary.update({'final_model':selected['name'],'selection_source':selected['source'],'selected_cv_score':selected['score'],
+ summary.update({'final_model':selected['name'],'selection_source':selected['source'],'selected_cv_score':selected['score'],'final_cv_score':selected['score'],
   'final_cv_rmse':float(-selected['score']) if task=='regression' else None,'cv_best_model':winner['name'],'cv_best_score':winner['score'],
   'one_standard_error_tolerance':tolerance,'selection_rule':'Among models within one standard error of the best CV score, prefer the simpler/deployment-friendlier model; prefer tuned settings for that estimator.',
   'target_label_mapping':mapping,'final_test_metrics':score_holdout(pipe,Xte,yte,task),

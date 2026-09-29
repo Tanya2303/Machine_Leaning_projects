@@ -59,7 +59,7 @@
     "final_model": "Gradient Boosting",
     "selection_source": "tuned",
     "selection_metric": "5-fold CV weighted F1",
-    "final_cv_score": 0.8598465767167586,
+    "final_cv_score": 0.8598465767,
     "final_cv_rmse": null,
     "target_label_mapping": null,
     "final_test_metrics": {
@@ -77,6 +77,33 @@
           11
         ]
       ],
+      "per_class_metrics": {
+        "0": {
+          "precision": 0.8222222222222222,
+          "recall": 0.9024390243902439,
+          "f1-score": 0.8604651162790697,
+          "support": 41.0
+        },
+        "1": {
+          "precision": 0.7333333333333333,
+          "recall": 0.5789473684210527,
+          "f1-score": 0.6470588235294118,
+          "support": 19.0
+        },
+        "accuracy": 0.8,
+        "macro avg": {
+          "precision": 0.7777777777777777,
+          "recall": 0.7406931964056482,
+          "f1-score": 0.7537619699042408,
+          "support": 60.0
+        },
+        "weighted avg": {
+          "precision": 0.7940740740740739,
+          "recall": 0.8,
+          "f1-score": 0.7928864569083448,
+          "support": 60.0
+        }
+      },
       "roc_auc": 0.8331193838254172
     },
     "optional_boosters_available": [
@@ -155,7 +182,7 @@
     "final_model": "CatBoost",
     "selection_source": "tuned",
     "selection_metric": "5-fold CV RMSE (lower is better)",
-    "final_cv_score": -3.233970853234921,
+    "final_cv_score": -3.2339708532,
     "final_cv_rmse": 3.2339708532,
     "target_label_mapping": null,
     "final_test_metrics": {
@@ -241,7 +268,7 @@
     "final_model": "Decision Tree",
     "selection_source": "tuned",
     "selection_metric": "5-fold CV weighted F1",
-    "final_cv_score": 0.9994147884372753,
+    "final_cv_score": 0.9994147884,
     "final_cv_rmse": null,
     "target_label_mapping": {
       "0": "Approved",
@@ -262,6 +289,33 @@
           323
         ]
       ],
+      "per_class_metrics": {
+        "0": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 531.0
+        },
+        "1": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 323.0
+        },
+        "accuracy": 1.0,
+        "macro avg": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 854.0
+        },
+        "weighted avg": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 854.0
+        }
+      },
       "roc_auc": 1.0
     },
     "optional_boosters_available": [
@@ -359,7 +413,7 @@
     "final_model": "Ridge",
     "selection_source": "tuned",
     "selection_metric": "5-fold CV RMSE (lower is better)",
-    "final_cv_score": -2.0504383972374436,
+    "final_cv_score": -2.052386521,
     "final_cv_rmse": 2.052386521,
     "target_label_mapping": null,
     "final_test_metrics": {

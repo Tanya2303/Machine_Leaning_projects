@@ -63,7 +63,7 @@
   "final_model": "Decision Tree",
   "selection_source": "tuned",
   "selection_metric": "5-fold CV weighted F1",
-  "final_cv_score": 0.9994147884372753,
+  "final_cv_score": 0.9994147884,
   "final_cv_rmse": null,
   "target_label_mapping": {
     "0": "Approved",
@@ -84,6 +84,33 @@
         323
       ]
     ],
+    "per_class_metrics": {
+      "0": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 531.0
+      },
+      "1": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 323.0
+      },
+      "accuracy": 1.0,
+      "macro avg": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 854.0
+      },
+      "weighted avg": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 854.0
+      }
+    },
     "roc_auc": 1.0
   },
   "optional_boosters_available": [

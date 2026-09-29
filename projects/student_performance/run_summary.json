@@ -81,7 +81,7 @@
   "final_model": "Ridge",
   "selection_source": "tuned",
   "selection_metric": "5-fold CV RMSE (lower is better)",
-  "final_cv_score": -2.0504383972374436,
+  "final_cv_score": -2.052386521,
   "final_cv_rmse": 2.052386521,
   "target_label_mapping": null,
   "final_test_metrics": {

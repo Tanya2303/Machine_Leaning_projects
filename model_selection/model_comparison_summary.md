@@ -11,8 +11,8 @@ Actual results on the supplied datasets. Each project uses one seeded 80/20 test
 
 ## Dataset notes
 
-- Heart dataset (299 rows) predicts the supplied `DEATH_EVENT` follow-up outcome; it does not diagnose heart disease. The small positive class means recall and ROC-AUC may vary substantially across splits.
-- The 506-row headerless `housing.csv` is Boston Housing. `MEDV` is a historical median value in thousands of dollars; this dataset has known fairness and population limitations and is for education only.
-- Loan approval achieved unusually high scores on this split, including a perfect holdout for the selected Decision Tree. This is dataset-specific evidence and does not establish real-world lending performance.
-- Student Performance selects regularized Ridge because its CV result is within one standard error of the best while remaining easier to explain and deploy. Its test performance is close to the tuned SVR.
-- Feature importance is calculated after model selection for interpretation. It does not influence model selection.
+- Heart data predicts the supplied `DEATH_EVENT` follow-up outcome, not heart disease diagnosis. The small positive class makes metrics uncertain.
+- The headerless `housing.csv` is Boston Housing. `MEDV` is in thousands of dollars; this historic dataset is educational only.
+- Loan approval scores are exceptionally high on this split. The perfect holdout is dataset-specific and does not establish real lending performance.
+- Student Performance uses Ridge because it is within one standard error of the best CV model while easier to explain and deploy.
+- Permutation feature importance is produced after selection for interpretation only.
