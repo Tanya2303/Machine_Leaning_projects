@@ -10,7 +10,3 @@ End-to-end regression using the supplied dataset `datasets/housing.csv`.
 - Held-out permutation feature importance: `feature_importance.csv`; numeric correlations: `numeric_correlations.csv`.
 
 Run from the repository root with `python model_selection/run_experiments.py`. Five-fold CV is computed on the training split, and candidates share one untouched test split. The test set is reserved for final reporting.
-
-## Selection rationale
-
-Tuned CatBoost had the lowest five-fold CV RMSE among evaluated candidates (3.234); on the held-out set it achieved MAE 1.862, RMSE 3.017, and R² 0.876. `MEDV` is in $1000s. Boston Housing is an old educational dataset and should not be used for real property valuation or policy decisions.
